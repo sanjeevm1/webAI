@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">stop</button>
+    <p id="text"></p>
+    
+
+    <script type="text/javascript">
+    
+    let recog=new webkitSpeechRecognition();
+    //speechSynthesis.speak(new SpeechSynthesisUtterance("Welcome"));
+
+    function start(){
+
+        recog.start();
+        recog.continuous=true;
+        recog.interimResults=true;
+
+    }
+
+    function stop(){
+        
+        recog.stop();
+    }
+
+    let final="",intermim="";
+
+        recog.onresult=(event)=>{
+
+            
+            for(var i=event.resultIndex;i<event.results.length;i++){
+
+                if(event.results[i].isFinal)
+                final+=event.results[i][0].transcript;
+
+                else
+                intermim+=event.results[i][0].transcript;
+                 
+            }
+            
+            document.getElementById("text").innerHTML=final;
+            speechSynthesis.speak(new SpeechSynthesisUtterance(final));
+
+            final="";intermim="";
+        
+        }
+
+        
+    
+    
+    </script>
+</body>
+</html>

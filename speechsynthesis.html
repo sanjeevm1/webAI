@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+</head>
+<body>  
+    <h1 id="h">speak</h1>
+    <textarea id="input" id="" cols="30" rows="10"></textarea>
+    <button onclick="speak()">speak</button>
+
+    <script type="text/javascript">
+
+        function speak(){
+
+        let prop=new SpeechSynthesisUtterance(document.getElementById("input").value);
+        prop.volume=100;
+        speechSynthesis.speak(prop);
+    }
+
+
+    </script>
+</body>
+</html>
